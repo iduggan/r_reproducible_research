@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>R for Reproducible Scientific Analysis: Project Management With RStudio</title><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="stylesheet" type="text/css" href="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/styles.css"><script src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/scripts.js" type="text/javascript"></script><!-- mathjax --><script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+      config: ["MMLorHTML.js"],
+      jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML", "output/PreviewHTML"],
+      extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
+      TeX: {
+        extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+      },
+      tex2jax: {
+        inlineMath: [['\\(', '\\)']],
+        displayMath: [ ['$$','$$'], ['\\[', '\\]'] ],
+        processEscapes: true
+      }
+    });
+    </script><script src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><!-- Responsive Favicon for The Carpentries --><link rel="apple-touch-icon" sizes="180x180" href="https://swcarpentry.github.io/r-novice-gapminder/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://swcarpentry.github.io/r-novice-gapminder/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://swcarpentry.github.io/r-novice-gapminder/favicon-16x16.png"><link rel="manifest" href="https://swcarpentry.github.io/r-novice-gapminder/site.webmanifest"><link rel="mask-icon" href="https://swcarpentry.github.io/r-novice-gapminder/safari-pinned-tab.svg" color="#5bbad5"><meta name="msapplication-TileColor" content="#da532c"><meta name="theme-color" content="#ffffff"><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><script charset="utf-8" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/tweet.d7aeb21a88e025d2ea5f5431a103f586.js"></script><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style></head><body><div id="MathJax_Message" style="display: none;"></div>
+    <header id="top" class="navbar navbar-expand-md navbar-light bg-white top-nav software"><a class="visually-hidden-focusable skip-link" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#main-content">Skip to main content</a>
+  <div class="container-fluid top-nav-container">
+    <div class="col-md-6">
+      <div class="large-logo">
+        <img alt="Software Carpentry" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/software-logo.svg"></div>
+    </div>
+    <div class="selector-container">
+      
+      
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle bordered-button" type="button" id="dropdownMenu1" data-bs-toggle="dropdown" aria-expanded="false">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye icon" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Learner View <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"><li><button class="dropdown-item" type="button" onclick="window.location.href=&#39;instructor/02-project-intro.html&#39;;">Instructor View</button></li>
+        </ul></div>
+    </div>
+  </div>
+  <hr></header><nav class="navbar navbar-expand-xl navbar-light bg-white bottom-nav software" aria-label="Main Navigation"><div class="container-fluid nav-container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+      <span class="menu-title">Menu</span>
+    </button>
+    <div class="nav-logo">
+      <img class="small-logo" alt="Software Carpentry" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/software-logo-sm.svg"></div>
+    <div class="lesson-title-md">
+      R for Reproducible Scientific Analysis
+    </div>
+    <div class="search-icon-sm">
+      <!-- TODO: do not show until we have search
+        <i role="img" aria-label="search button" data-feather="search"></i>
+      -->
+    </div>
+    <div class="desktop-nav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0"><li class="nav-item">
+          <span class="lesson-title">
+            R for Reproducible Scientific Analysis
+          </span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://swcarpentry.github.io/r-novice-gapminder/key-points.html">Key Points</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://swcarpentry.github.io/r-novice-gapminder/reference.html#glossary">Glossary</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://swcarpentry.github.io/r-novice-gapminder/profiles.html">Learner Profiles</a>
+        </li>
+        <li class="nav-item dropdown">
+          <button class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown"><li><a class="dropdown-item" href="https://swcarpentry.github.io/r-novice-gapminder/discuss.html">Discussion</a></li><li><a class="dropdown-item" href="https://swcarpentry.github.io/r-novice-gapminder/reference.html">Reference</a></li>
+          </ul></li>
+      </ul></div>
+    <form class="d-flex col-md-2 search-form">
+      <fieldset disabled=""><input class="form-control me-2 searchbox" type="search" placeholder="Search" aria-label="Search"><button class="btn btn-outline-success tablet-search-button" type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search search-icon" role="img" aria-label="search button"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+      </fieldset></form>
+  </div><!--/div.container-fluid -->
+</nav><div class="col-md-12 mobile-title">
+  R for Reproducible Scientific Analysis
+</div>
+
+<aside class="col-md-12 lesson-progress"><div style="width: 7%" class="percentage">
+    7%
+  </div>
+  <div class="progress software">
+    <div class="progress-bar software" role="progressbar" style="width: 7%" aria-valuenow="7" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    </div>
+  </div>
+</aside><div class="container">
+      <div class="row">
+        <!-- START: inst/pkgdown/templates/navbar.html -->
+<div id="sidebar-col" class="col-lg-4">
+  <div id="sidebar" class="sidebar">
+      <nav aria-labelledby="flush-headingEleven"><button role="button" aria-label="close menu" alt="close menu" aria-expanded="true" aria-controls="sidebar" class="collapse-toggle" data-collapse="Collapse " data-episodes="Episodes ">Collapse <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
+        <div class="sidebar-inner">
+          <div class="row mobile-row">
+            <div class="col">
+              <div class="sidenav-view-selector">
+                <div class="accordion accordion-flush" id="accordionFlush9">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingNine">
+                      <button class="accordion-button collapsed" id="instructor" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseNine" aria-expanded="false" aria-controls="flush-collapseNine">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye icon" id="eye" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg> Learner View
+                      </button>
+                    </h2>
+                    <div id="flush-collapseNine" class="accordion-collapse collapse" aria-labelledby="flush-headingNine" data-bs-parent="#accordionFlush2">
+                      <div class="accordion-body">
+                        <a href="https://swcarpentry.github.io/r-novice-gapminder/instructor/02-project-intro.html">Instructor View</a>
+                      </div>
+                    </div>
+                  </div><!--/div.accordion-item-->
+                </div><!--/div.accordion-flush-->
+              </div><!--div.sidenav-view-selector -->
+            </div><!--/div.col -->
+      
+            <hr></div><!--/div.mobile-row -->
+
+          <div class="accordion accordion-flush" id="accordionFlush11">
+            <div class="accordion-item">
+
+              <button id="chapters" class="accordion-button show" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseEleven" aria-expanded="false" aria-controls="flush-collapseEleven">
+                <h2 class="accordion-header chapters" id="flush-headingEleven">
+                  EPISODES
+                </h2>
+              </button>
+              <div id="flush-collapseEleven" class="accordion-collapse show collapse" aria-labelledby="flush-headingEleven" data-bs-parent="#accordionFlush11">
+
+                <div class="accordion-body">
+                  <div class="accordion accordion-flush" id="accordionFlush1">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading1">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/index.html">Summary and Setup</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush2">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading2">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html">1. Introduction to R and RStudio</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlushcurrent">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-headingcurrent">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapsecurrent" aria-expanded="true" aria-controls="flush-collapsecurrent">
+        <span class="visually-hidden">Current Chapter</span>
+        <span class="current-chapter">
+        2. Project Management With RStudio
+        </span>
+      </button>
+    </div><!--/div.accordion-header-->
+        
+    <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
+      <div class="accordion-body">
+        <ul><li><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#introduction">Introduction</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#a-possible-solution">A possible solution</a></li>
+<li><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#best-practices-for-project-organization">Best practices for project organization</a></li>
+        </ul></div><!--/div.accordion-body-->
+    </div><!--/div.accordion-collapse-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush4">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading4">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html">3. Seeking Help</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush5">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading5">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/04-data-structures-part1.html">4. Data Structures</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush6">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading6">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/05-data-structures-part2.html">5. Exploring Data Frames</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/06-data-subsetting.html">6. Subsetting Data</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/07-control-flow.html">7. Control Flow</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush9">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading9">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/08-plot-ggplot2.html">8. Creating Publication-Quality Graphics with ggplot2</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/09-vectorization.html">9. Vectorization</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush11">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading11">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/10-functions.html">10. Functions Explained</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush12">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading12">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/11-writing-data.html">11. Writing Data</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush13">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading13">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/12-plyr.html">12. Splitting and Combining Data Frames with plyr</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush14">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading14">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/13-dplyr.html">13. Data Frame Manipulation with dplyr</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush15">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading15">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/14-tidyr.html">14. Data Frame Manipulation with tidyr</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush16">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading16">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/15-knitr-markdown.html">15. Producing Reports With knitr</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush17">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading17">
+        <a href="https://swcarpentry.github.io/r-novice-gapminder/16-wrap-up.html">16. Writing Good Software</a>
+    </div><!--/div.accordion-header-->
+        
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+                </div>
+              </div>
+            </div>
+
+            <hr class="half-width"><div class="accordion accordion-flush resources" id="accordionFlush12">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingTwelve">
+                  <button class="accordion-button collapsed" id="resources" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwelve" aria-expanded="false" aria-controls="flush-collapseTwelve">
+                    RESOURCES
+                  </button>
+                </h2>
+                <div id="flush-collapseTwelve" class="accordion-collapse collapse" aria-labelledby="flush-headingTwelve" data-bs-parent="#accordionFlush12">
+                  <div class="accordion-body">
+                    <ul><li>
+                        <a href="https://swcarpentry.github.io/r-novice-gapminder/key-points.html">Key Points</a>
+                      </li>
+                      <li>
+                        <a href="https://swcarpentry.github.io/r-novice-gapminder/reference.html#glossary">Glossary</a>
+                      </li>
+                      <li>
+                        <a href="https://swcarpentry.github.io/r-novice-gapminder/profiles.html">Learner Profiles</a>
+                      </li>
+                      <li><a href="https://swcarpentry.github.io/r-novice-gapminder/discuss.html">Discussion</a></li><li><a href="https://swcarpentry.github.io/r-novice-gapminder/reference.html">Reference</a></li>
+                    </ul></div>
+                </div>
+              </div>
+            </div>
+            <hr class="half-width resources"><a href="https://swcarpentry.github.io/r-novice-gapminder/aio.html">See all in one page</a>
+            
+
+            <hr class="d-none d-sm-block d-md-none"><div class="d-grid gap-1">
+            
+            </div>
+          </div><!-- /div.accordion -->
+        </div><!-- /div.sidebar-inner -->
+      </nav></div><!-- /div.sidebar -->
+  </div><!-- /div.sidebar-col -->
+<!-- END:   inst/pkgdown/templates/navbar.html-->
+
+        <!-- START: inst/pkgdown/templates/content-instructor.html -->
+  <div class="col-xl-8 col-lg-12 primary-content">
+    <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
+        <a class="chapter-link" href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left small-arrow" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Previous</a>
+        <a class="chapter-link float-end" href="https://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html">Next<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right small-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+      <!-- content for large screens -->
+      <div class="d-none d-sm-none d-md-block">
+        <a class="chapter-link" href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html" rel="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left small-arrow" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Previous: Introduction to R
+        </a>
+        <a class="chapter-link float-end" href="https://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html" rel="next">
+          Next: Seeking Help... 
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right small-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+      <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
+        <h1>Project Management With RStudio</h1>
+        <p>Last updated on 2024-01-04 |
+        
+        <a href="https://github.com/swcarpentry/r-novice-gapminder/edit/main/episodes/02-project-intro.Rmd" class="external-link">Edit this page <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit" aria-hidden="true"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg></a></p>
+        
+        
+        
+        <div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></button>
+        </div>
+
+        
+
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul><li>How can I manage my projects in R?</li>
+</ul></div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul><li>Create self-contained projects in RStudio</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<section id="introduction"><h2 class="section-heading">Introduction<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#introduction"></a>
+</h2>
+<hr class="half-width"><p>The scientific process is naturally incremental, and many projects
+start life as random notes, some code, then a manuscript, and eventually
+everything is a bit mixed together.</p>
+<div class="twitter-tweet twitter-tweet-rendered" style="display: flex; max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 550px; height: 273px; display: block; flex-grow: 1;" title="X Post" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/Tweet.html" data-tweet-id="323638476153167872"></iframe></div>
+<script async="" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/widgets.js" charset="utf-8"></script><p>Most people tend to organize their projects like this:</p>
+<figure><img src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/bad_layout.png" alt="Screenshot of file manager demonstrating bad project organisation" class="figure mx-auto d-block"></figure><p>There are many reasons why we should <em>ALWAYS</em> avoid this:</p>
+<ol style="list-style-type: decimal"><li>It is really hard to tell which version of your data is the original
+and which is the modified;</li>
+<li>It gets really messy because it mixes files with various extensions
+together;</li>
+<li>It probably takes you a lot of time to actually find things, and
+relate the correct figures to the exact code that has been used to
+generate it;</li>
+</ol><p>A good project layout will ultimately make your life easier:</p>
+<ul><li>It will help ensure the integrity of your data;</li>
+<li>It makes it simpler to share your code with someone else (a
+lab-mate, collaborator, or supervisor);</li>
+<li>It allows you to easily upload your code with your manuscript
+submission;</li>
+<li>It makes it easier to pick the project back up after a break.</li>
+</ul></section><section id="a-possible-solution"><h2 class="section-heading">A possible solution<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#a-possible-solution"></a>
+</h2>
+<hr class="half-width"><p>Fortunately, there are tools and packages which can help you manage
+your work effectively.</p>
+<p>One of the most powerful and useful aspects of RStudio is its project
+management functionality. We’ll be using this today to create a
+self-contained, reproducible project.</p>
+<div id="challenge-1-creating-a-self-contained-project" class="callout discussion">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle callout-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</div>
+<div id="challenge-1-creating-a-self-contained-project" class="callout-inner">
+<h3 class="callout-title">Challenge 1: Creating a self-contained
+project<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#challenge-1-creating-a-self-contained-project"></a>
+</h3>
+<div class="callout-content">
+<p>We’re going to create a new project in RStudio:</p>
+<ol style="list-style-type: decimal"><li>Click the “File” menu button, then “New Project”.</li>
+<li>Click “New Directory”.</li>
+<li>Click “New Project”.</li>
+<li>Type in the name of the directory to store your project,
+e.g.&nbsp;“my_project”.</li>
+<li>If available, select the checkbox for “Create a git
+repository.”</li>
+<li>Click the “Create Project” button.</li>
+</ol></div>
+</div>
+</div>
+<p>The simplest way to open an RStudio project once it has been created
+is to click through your file system to get to the directory where it
+was saved and double click on the <code>.Rproj</code> file. This will
+open RStudio and start your R session in the same directory as the
+<code>.Rproj</code> file. All your data, plots and scripts will now be
+relative to the project directory. RStudio projects have the added
+benefit of allowing you to open multiple projects at the same time each
+open to its own project directory. This allows you to keep multiple
+projects open without them interfering with each other.</p>
+<div id="challenge-2-opening-an-rstudio-project-through-the-file-system" class="callout discussion">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle callout-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</div>
+<div id="challenge-2-opening-an-rstudio-project-through-the-file-system" class="callout-inner">
+<h3 class="callout-title">Challenge 2: Opening an RStudio project
+through the file system<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#challenge-2-opening-an-rstudio-project-through-the-file-system"></a>
+</h3>
+<div class="callout-content">
+<ol style="list-style-type: decimal"><li>Exit RStudio.</li>
+<li>Navigate to the directory where you created a project in Challenge
+1.</li>
+<li>Double click on the <code>.Rproj</code> file in that directory.</li>
+</ol></div>
+</div>
+</div>
+</section><section id="best-practices-for-project-organization"><h2 class="section-heading">Best practices for project organization<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#best-practices-for-project-organization"></a>
+</h2>
+<hr class="half-width"><p>Although there is no “best” way to lay out a project, there are some
+general principles to adhere to that will make project management
+easier:</p>
+<div class="section level3">
+<h3 id="treat-data-as-read-only">Treat data as read only<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#treat-data-as-read-only"></a></h3>
+<p>This is probably the most important goal of setting up a project.
+Data is typically time consuming and/or expensive to collect. Working
+with them interactively (e.g., in Excel) where they can be modified
+means you are never sure of where the data came from, or how it has been
+modified since collection. It is therefore a good idea to treat your
+data as “read-only”.</p>
+</div>
+<div class="section level3">
+<h3 id="data-cleaning">Data Cleaning<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#data-cleaning"></a></h3>
+<p>In many cases your data will be “dirty”: it will need significant
+preprocessing to get into a format R (or any other programming language)
+will find useful. This task is sometimes called “data munging”. Storing
+these scripts in a separate folder, and creating a second “read-only”
+data folder to hold the “cleaned” data sets can prevent confusion
+between the two sets.</p>
+</div>
+<div class="section level3">
+<h3 id="treat-generated-output-as-disposable">Treat generated output as disposable<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#treat-generated-output-as-disposable"></a></h3>
+<p>Anything generated by your scripts should be treated as disposable:
+it should all be able to be regenerated from your scripts.</p>
+<p>There are lots of different ways to manage this output. Having an
+output folder with different sub-directories for each separate analysis
+makes it easier later. Since many analyses are exploratory and don’t end
+up being used in the final project, and some of the analyses get shared
+between projects.</p>
+<div id="tip-good-enough-practices-for-scientific-computing" class="callout callout">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell callout-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+</div>
+<div id="tip-good-enough-practices-for-scientific-computing" class="callout-inner">
+<h3 class="callout-title">Tip: Good Enough Practices for Scientific
+Computing<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#tip-good-enough-practices-for-scientific-computing"></a>
+</h3>
+<div class="callout-content">
+<p><a href="https://github.com/swcarpentry/good-enough-practices-in-scientific-computing/blob/gh-pages/good-enough-practices-for-scientific-computing.pdf" class="external-link">Good
+Enough Practices for Scientific Computing</a> gives the following
+recommendations for project organization:</p>
+<ol style="list-style-type: decimal"><li>Put each project in its own directory, which is named after the
+project.</li>
+<li>Put text documents associated with the project in the
+<code>doc</code> directory.</li>
+<li>Put raw data and metadata in the <code>data</code> directory, and
+files generated during cleanup and analysis in a <code>results</code>
+directory.</li>
+<li>Put source for the project’s scripts and programs in the
+<code>src</code> directory, and programs brought in from elsewhere or
+compiled locally in the <code>bin</code> directory.</li>
+<li>Name all files to reflect their content or function.</li>
+</ol></div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="separate-function-definition-and-application">Separate function definition and application<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#separate-function-definition-and-application"></a></h3>
+<p>One of the more effective ways to work with R is to start by writing
+the code you want to run directly in a .R script, and then running the
+selected lines (either using the keyboard shortcuts in RStudio or
+clicking the “Run” button) in the interactive R console.</p>
+<p>When your project is in its early stages, the initial .R script file
+usually contains many lines of directly executed code. As it matures,
+reusable chunks get pulled into their own functions. It’s a good idea to
+separate these functions into two separate folders; one to store useful
+functions that you’ll reuse across analyses and projects, and one to
+store the analysis scripts.</p>
+</div>
+<div class="section level3">
+<h3 id="save-the-data-in-the-data-directory">Save the data in the data directory<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#save-the-data-in-the-data-directory"></a></h3>
+<p>Now we have a good directory structure we will now place/save the
+data file in the <code>data/</code> directory.</p>
+<div id="challenge-3" class="callout discussion">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle callout-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</div>
+<div id="challenge-3" class="callout-inner">
+<h3 class="callout-title">Challenge 3<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#challenge-3"></a>
+</h3>
+<div class="callout-content">
+<p>Download the gapminder data from <a href="https://swcarpentry.github.io/r-novice-gapminder/data/gapminder_data.csv">this link to a csv file</a>.</p>
+<ol style="list-style-type: decimal"><li>Download the file (right mouse click on the link above -&gt; “Save
+link as” / “Save file as”, or click on the link and after the page
+loads, press <kbd>Ctrl</kbd>+<kbd>S</kbd> or choose File -&gt; “Save
+page as”)</li>
+<li>Make sure it’s saved under the name
+<code>gapminder_data.csv</code>
+</li>
+<li>Save the file in the <code>data/</code> folder within your
+project.</li>
+</ol><p>We will load and inspect these data later.</p>
+</div>
+</div>
+</div>
+<div id="challenge-4" class="callout challenge">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap callout-icon"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+</div>
+<div id="challenge-4" class="callout-inner">
+<h3 class="callout-title">Challenge 4<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#challenge-4"></a>
+</h3>
+<div class="callout-content">
+<p>It is useful to get some general idea about the dataset, directly
+from the command line, before loading it into R. Understanding the
+dataset better will come in handy when making decisions on how to load
+it in R. Use the command-line shell to answer the following
+questions:</p>
+<ol style="list-style-type: decimal"><li>What is the size of the file?</li>
+<li>How many rows of data does it contain?</li>
+<li>What kinds of values are stored in this file?</li>
+</ol></div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1">Solution to Challenge 4</h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>By running these commands in the shell:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">SH<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> data/gapminder_data.csv</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="output" tabindex="0"><code>-rw-r--r-- 1 runner docker 80K Jan  4 17:27 data/gapminder_data.csv</code></pre>
+</div>
+<p>The file size is 80K.</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">SH<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> data/gapminder_data.csv</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="output" tabindex="0"><code>1705 data/gapminder_data.csv</code></pre>
+</div>
+<p>There are 1705 lines. The data looks like:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">SH<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="sourceCode sh" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> data/gapminder_data.csv</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</h3>
+<pre class="output" tabindex="0"><code>country,year,pop,continent,lifeExp,gdpPercap
+Afghanistan,1952,8425333,Asia,28.801,779.4453145
+Afghanistan,1957,9240934,Asia,30.332,820.8530296
+Afghanistan,1962,10267083,Asia,31.997,853.10071
+Afghanistan,1967,11537966,Asia,34.02,836.1971382
+Afghanistan,1972,13079460,Asia,36.088,739.9811058
+Afghanistan,1977,14880372,Asia,38.438,786.11336
+Afghanistan,1982,12881816,Asia,39.854,978.0114388
+Afghanistan,1987,13867957,Asia,40.822,852.3959448
+Afghanistan,1992,16317921,Asia,41.674,649.3413952</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tip-command-line-in-rstudio" class="callout callout">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell callout-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+</div>
+<div id="tip-command-line-in-rstudio" class="callout-inner">
+<h3 class="callout-title">Tip: command line in RStudio<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#tip-command-line-in-rstudio"></a>
+</h3>
+<div class="callout-content">
+<p>The Terminal tab in the console pane provides a convenient place
+directly within RStudio to interact directly with the command line.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="working-directory">Working directory<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#working-directory"></a></h3>
+<p>Knowing R’s current working directory is important because when you
+need to access other files (for example, to import a data file), R will
+look for them relative to the current working directory.</p>
+<p>Each time you create a new RStudio Project, it will create a new
+directory for that project. When you open an existing
+<code>.Rproj</code> file, it will open that project and set R’s working
+directory to the folder that file is in.</p>
+<div id="challenge-5" class="callout discussion">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle callout-icon"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</div>
+<div id="challenge-5" class="callout-inner">
+<h3 class="callout-title">Challenge 5<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#challenge-5"></a>
+</h3>
+<div class="callout-content">
+<p>You can check the current working directory with the
+<code>getwd()</code> command, or by using the menus in RStudio.</p>
+<ol style="list-style-type: decimal"><li>In the console, type <code>getwd()</code> (“wd” is short for
+“working directory”) and hit Enter.</li>
+<li>In the Files pane, double click on the <code>data</code> folder to
+open it (or navigate to any other folder you wish). To get the Files
+pane back to the current working directory, click “More” and then select
+“Go To Working Directory”.</li>
+</ol><p>You can change the working directory with <code>setwd()</code>, or by
+using RStudio menus.</p>
+<ol style="list-style-type: decimal"><li>In the console, type <code>setwd("data")</code> and hit Enter. Type
+<code>getwd()</code> and hit Enter to see the new working
+directory.</li>
+<li>In the menus at the top of the RStudio window, click the “Session”
+menu button, and then select “Set Working Directory” and then “Choose
+Directory”. Next, in the windows navigator that opens, navigate back to
+the project directory, and click “Open”. Note that a <code>setwd</code>
+command will automatically appear in the console.</li>
+</ol></div>
+</div>
+</div>
+<div id="tip-file-does-not-exist-errors" class="callout callout">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell callout-icon"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+</div>
+<div id="tip-file-does-not-exist-errors" class="callout-inner">
+<h3 class="callout-title">Tip: File does not exist errors<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#tip-file-does-not-exist-errors"></a>
+</h3>
+<div class="callout-content">
+<p>When you’re attempting to reference a file in your R code and you’re
+getting errors saying the file doesn’t exist, it’s a good idea to check
+your working directory. You need to either provide an absolute path to
+the file, or you need to make sure the file is saved in the working
+directory (or a subfolder of the working directory) and provide a
+relative path.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section level3">
+<h3 id="version-control">Version Control<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#version-control"></a></h3>
+<p>It is important to use version control with projects. Go <a href="https://swcarpentry.github.io/git-novice/14-supplemental-rstudio.html" class="external-link">here
+for a good lesson which describes using Git with RStudio</a>.</p>
+<div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-key callout-icon"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path></svg>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points<a class="anchor" aria-label="anchor" href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#keypoints1"></a>
+</h3>
+<div class="callout-content">
+<ul><li>Use RStudio to create and manage projects with consistent
+layout.</li>
+<li>Treat raw data as read-only.</li>
+<li>Treat generated output as disposable.</li>
+<li>Separate function definition and application.</li>
+</ul></div>
+</div>
+</div>
+</div>
+</section></div> <!-- / div.lesson-content -->
+    </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
+        <a class="chapter-link" href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left small-arrow" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>Previous</a>
+        <a class="chapter-link float-end" href="https://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html">Next<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right small-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+      </div>
+      <!-- content for large screens -->
+      <div class="d-none d-sm-none d-md-block">
+        <a class="chapter-link" href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro.html" rel="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left small-arrow" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Previous: Introduction to R
+        </a>
+        <a class="chapter-link float-end" href="https://swcarpentry.github.io/r-novice-gapminder/03-seeking-help.html" rel="next">
+          Next: Seeking Help... 
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right small-arrow" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </a>
+      </div>
+    </nav></div> <!-- / div.primary-content.col-xs-12 -->
+<!-- END:   inst/pkgdown/templates/content-instructor.html-->
+
+      </div><!--/div.row-->
+      		<footer class="row footer mx-md-3"><hr><div class="col-md-6">
+        <p>This lesson is subject to the <a href="https://swcarpentry.github.io/r-novice-gapminder/CODE_OF_CONDUCT.html">Code of Conduct</a></p>
+        <p>
+        
+        <a href="https://github.com/swcarpentry/r-novice-gapminder/edit/main/episodes/02-project-intro.Rmd" class="external-link">Edit on GitHub</a>
+        
+	
+        | <a href="https://github.com/swcarpentry/r-novice-gapminder/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/swcarpentry/r-novice-gapminder/" class="external-link">Source</a></p>
+				<p><a href="https://github.com/swcarpentry/r-novice-gapminder/blob/main/CITATION" class="external-link">Cite</a> | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+			</div>
+			<div class="col-md-6">
+        
+        <p>Materials licensed under <a href="https://swcarpentry.github.io/r-novice-gapminder/LICENSE.html">CC-BY 4.0</a> by the authors</p>
+        
+        <p>Template licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/" class="external-link">CC-BY 4.0</a> by <a href="https://carpentries.org/" class="external-link">The Carpentries</a></p>
+        <p>Built with <a href="https://github.com/carpentries/sandpaper/tree/0.16.2" class="external-link">sandpaper (0.16.2)</a>, <a href="https://github.com/carpentries/pegboard/tree/0.7.3" class="external-link">pegboard (0.7.3)</a>, and <a href="https://github.com/carpentries/varnish/tree/1.0.1" class="external-link">varnish (1.0.1)</a></p>
+			</div>
+		</footer></div> <!-- / div.container -->
+	<div id="to-top" style="display: block;">
+		<a href="https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html#top">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up search-icon" role="img" aria-label="Back To Top"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg><br><!-- <span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">Back</span> To Top --><span class="d-none d-sm-none d-md-none d-lg-none d-xl-block">Back</span> To Top
+		</a>
+	</div>
+  <script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "TrainingMaterial",
+  "@id": "https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html",
+  "inLanguage": "en",
+  "dct:conformsTo": "https://bioschemas.org/profiles/TrainingMaterial/1.0-RELEASE",
+  "description": "A Carpentries Lesson teaching foundational data and coding skills to researchers worldwide",
+  "keywords": "software, data, lesson, The Carpentries",
+  "name": "Project Management With RStudio",
+  "creativeWorkStatus": "active",
+  "url": "https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html",
+  "identifier": "https://swcarpentry.github.io/r-novice-gapminder/02-project-intro.html",
+  "dateCreated": "2015-04-18",
+  "dateModified": "2024-01-04",
+  "datePublished": "2024-01-30"
+}
+
+  </script><script>
+		feather.replace();
+	</script><!-- Matomo
+    2022-11-07: we have gotten a notification that we have an overage for our
+    tracking and I'm pretty sure this has to do with Workbench usage.
+    Considering that I am not _currently_ using this tracking because I do not
+    yet know how to access the data, I am turning this off for now.
+  <script>
+    var _paq = window._paq = window._paq || [];
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+    _paq.push(["setDomains", ["*.preview.carpentries.org","*.datacarpentry.github.io","*.datacarpentry.org","*.librarycarpentry.github.io","*.librarycarpentry.org","*.swcarpentry.github.io", "*.carpentries.github.io"]]);
+    _paq.push(["setDoNotTrack", true]);
+    _paq.push(["disableCookies"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+          var u="https://carpentries.matomo.cloud/";
+          _paq.push(['setTrackerUrl', u+'matomo.php']);
+          _paq.push(['setSiteId', '1']);
+          var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+          g.async=true; g.src='https://cdn.matomo.cloud/carpentries.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+        })();
+  </script>
+  End Matomo Code -->
+
+<iframe scrolling="no" frameborder="0" allowtransparency="true" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/widget_iframe.2f70fb173b9000da126c79afe2098f02.html" title="Twitter settings iframe" style="display: none;"></iframe><iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe" src="./R for Reproducible Scientific Analysis_ Project Management With RStudio_files/saved_resource.html"></iframe></body></html>

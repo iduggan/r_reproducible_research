@@ -1,0 +1,26 @@
+---
+title: "chapter_3"
+author: Isabella Duggan
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+# Chapter 3: Seeking Help
+
+### Help functions in R
+  * ?function_name OR help(function_name)
+  
+### Getting help with packages:
+  * "vignettes": usually most packages offer tutorials and extended examples with this function
+  * try using "vignette(package="package-name")
+  * if a function has no vignettes, try help(package-name)
+
+### "Fuzzy" search on function names: 
+  *if you're not exactly sure of the name "??function_name"
+
+### Ask for help on : https://stackoverflow.com/
+
+
+

@@ -1,0 +1,31 @@
+---
+title: "chapter_2"
+author: Isabella Duggan
+format: 
+  html:
+    toc: true
+editor: visual
+---
+
+# Chapter 2: Project Management with R Studio
+
+### Keys to a good project layout:
+  1. Easily able to share with someone else
+  2. Easily upload your code with manuscript submission
+  3. Easily pick the project back up after some time away - and know what was going on
+  
+### Making a self-contained project
+  * Do this using github - as we have been
+  * Create a repo through github and load it in/ back out - why?
+  
+### Project Organization
+  1. Treat data as read only
+  2. Data cleaning
+    * *'data munging' - initial data may be hard to follow (dirty) and need to be cleaned*
+    * create a photo with raw "dirty" data to work with and a folder for the read-only "cleaned" data
+  3. Create outputs as disposable
+    * Each output you create should be able to be regenerated - so losing one would not be a problem
+    * Output folder with subcategories for each output - cleans things up 
+  4. Separate function definition and application
+    * "When your project is in its early stages, the initial .R script file usually contains many lines of directly executed code. As it matures, reusable chunks get pulled into their own functions. It’s a good idea to separate these functions into two separate folders; one to store useful functions that you’ll reuse across analyses and projects, and one to store the analysis scripts."
+  

@@ -1,0 +1,84 @@
+---
+title: "vector_hw"
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+## Vector Homework Notes:
+
+  *Assign vectors using "c()" function
+  
+  *The function class() indicates what kind of object you are working with
+  
+  *The function str() provides an overview of the structure of an object and its elements
+
+
+### Atomic Vector Types:
+  1. Numeric
+  2. Character
+  3. Logical
+  4. Integer
+  5. Complex
+  6. Raw
+  
+## Challenge 1:
+  - What happens when we mix atomic vector types in a single vector?
+```{r}
+weight <- c(2,2L,1+4i)
+```
+* Created values for weight, 
+  - all complex- converted all to be the same type of data
+
+##Challenge (cont):
+What happens in these examples?
+```{r}
+num_char <- c(1, 2, 3, "a") 
+class(num_char)
+```
+  *Assigned character to this example- because that was the final piece of data(?)
+  
+  
+```{r}
+num_logical <- c(1, 2, 3, TRUE)
+class(num_logical)
+```
+*Assigned numeric, is this a mistake? Why isn't it logical?
+
+
+```{r}
+char_logical <- c("a", "b", "c", TRUE)
+```
+*Assigned character, so it prefers num/ char to logical?
+
+
+```{r}
+tricky <- c(1, 2, 3, "4")
+```
+*Assigned character to "tricky," so it is "chr" when numeric value is in ""
+
+  * *trying to find a common denominator, but is it just random?*
+  
+
+##Challenge (cont 2):
+How many values are TRUE in combined data?
+```{r}
+combined_logical <- c(num_logical, char_logical)
+```
+*1 TRUE because it was deemed a character in char_logical, and replaced with a numeric value in num_logical
+
+##Hierarchy drawing:
+logical -> numeric -> character
+
+###Subsetting Vectors:
+```{r}
+colors <- c("blue","green","red","yellow")
+colors[3]
+
+more_colors <- c("blue","green","red","yellow","purple","pink")
+```
+
+##Challenge (optional):
+Why is "four" > "five" TRUE?
+  * In string/ char form it is looking at alphabetical order- because four falls below five alphabetically it is considered "greater than"

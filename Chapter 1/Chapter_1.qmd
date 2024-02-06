@@ -1,0 +1,56 @@
+---
+title: "Chapter_1"
+author: Isabella Duggan
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+# Chapter 1: Introduction to R and RStudio
+
+### Why is R important in research?
+  * Excel and Sheets allows you to add data and create charts similarly; but limits your ability to add anything beyond data
+    * *i.e. sharing steps* which is critical in research
+  
+### R Scripts
+  * Any commands that you write in the R console can be saved to a file to be re-run again. Files containing R code to be ran in this way are called R scripts. R scripts have .R at the end of their names to let you know what they are
+    * *why though?* I don't think I know enough about R console/ haven't worked with it enough to know why this would be important
+    
+### Running Code:
+  1. click on the Run button above the editor panel
+  2. select “Run Lines” from the “Code” menu
+  3. ⌘+Return on OS X
+
+### Canceling Commands
+  * Ctrl + C **when using R as a calculator**
+  
+### Mathematical Functions
+  1. Type functions by their name followed by ()
+    * Example : "sin(1)", exp(0.5)        # e^(1/2)
+  2. You can use R Studio to tab complete functions - easier than R in that way
+  3. Store values for later with "<-"
+    * Let x <- 1/2 then later, when you enter x, the output is 0.50
+    
+### Vectors in R
+  * Variables and functions can have vectors as values
+    1. a vector in R describes a set of values in a certain order of the same data type
+    2. Ex. [1:5] = 1, 2, 3, 4, 5 & 2^[1:5] = 2 > 32
+  * ls() - will list all variables in global environment if you can't find them
+  * c() - creates a vector
+
+###Install Packages
+  * install.packages("packagename")
+    - cran R is where most packages created by others are hosted
+    - sometimes you may need to update or install other information before you can download a code
+      * R tools, devtools for install github
+  * a lot of packages require other packages to download
+
+## Review
+  1. Use RStudio to write and run R programs.
+  2. R has the usual arithmetic operators and mathematical functions.
+  3. Use <- to assign values to variables.
+  4. Use ls() to list the variables in a program.
+  5. Use rm() to delete objects in a program.
+  6. Use install.packages() to install packages (libraries).
+  
