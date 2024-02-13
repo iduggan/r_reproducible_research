@@ -1,0 +1,115 @@
+---
+title: "chapter_6"
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+## Subsetting Data
+
+* 6 different ways to subset data
+* simple numeric vector:
+
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+x
+
+*simple vectors containing character strings, numbers, or logical values are called atomic vectors*
+
+##Accessing elements using their indices:
+
+x[1]
+> a 5.4
+
+*square brackets operator is a function*
+
+* vectoring starts at 1 in R
+
+##Skipping and Removing Elements
+
+* Using (-) will include everything BUT that element:
+
+ex: x[-2]
+> a   c   d   e 
+5.4 7.1 4.8 7.5 
+
+x[-(1:3)]
+> d   e 
+4.8 7.5 
+
+* Removing elements from a vector includes going back into the variable:
+
+ex: x <- x[-4]
+x
+
+ > x
+  a   b   c 
+5.4 6.2 7.1 
+
+##Challenge 1:
+
+x <- c(5.4, 6.2, 7.1, 4.8, 7.5)
+names(x) <- c('a', 'b', 'c', 'd', 'e')
+print(x)
+
+*2 commands that will produce:  
+b   c   d 
+6.2 7.1 4.8 
+
+> x[-c(1,5)] OR x[c(2,3,4)]
+
+###Can subset by names or logical operations
+
+##Challenge 2:
+
+*Write a subsetting command to return the values in x that are greater than 4 and less than 7:
+
+x_subset <- x[x>4 & x<7]
+print(x_subset)
+
+>  a   b   d 
+5.4 6.2 4.8 
+
+##Skipping named elements:
+
+Use !:
+* != (not-equals)
+
+ex:
+x[names(x) != "a"]
+>  b   c   d   e 
+6.2 7.1 4.8 7.5 
+
+##Challenge 4:
+
+m <- matrix(1:18, nrow=3, ncol=6)
+print(m)
+
+Which of the following commands will extract the values 11 and 14?
+A. m[2,4,2,5]
+
+B. m[2:5]
+
+C. m[4:5,2]
+
+D. m[2,c(4,5)]
+
+> Answer: D
+
+##Challenge 5:
+
+xlist <- list(a = "Software Carpentry", b = 1:10, data = head(mtcars))
+print(xlist)
+
+*Extract the number 2: 
+
+xlist$b[2]
+
+
+###Key Points
+1. Indexing in R starts at 1, not 0.
+2. Access individual values by location using [].
+3. Access slices of data using [low:high].
+4. Access arbitrary sets of data using [c(...)].
+5. Use logical operations and logical vectors to access subsets of data.

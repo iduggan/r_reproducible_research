@@ -1,0 +1,27 @@
+---
+title: "data_wrangling"
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+## Data Wrangling Chapter HW:
+
+4.2 Filtering Gapminder Data:
+
+```{r}
+library("gapminder")
+
+gapminder %>% filter(country=="Australia") %>% head(n=12)
+gapminder %>% dplyr::filter(country=="Australia") %>% head(n=12)
+```
+
+```{r}
+library(gapminder)
+
+gapminder %>% 
+  dplyr::filter(continent=="Oceania" & year==1997) %>% 
+  head()
+```
+

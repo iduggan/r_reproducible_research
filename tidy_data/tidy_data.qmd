@@ -1,0 +1,110 @@
+---
+title: "chapter_5"
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+## Introduction
+
+1. How to clean data well: many steps "outlier checking, to date parsing, to missing value imputation."
+2. data tidying: structuring datasets to facilitate analysis.
+
+## 2. Defining Tidy Data
+
+1. provide a framework to linking dataset's structure to its meaning in a standardized fashion
+2.1 Data Structure:
+  * in tables- rows and columns
+2.2 Data Semantics:
+  * datasets consists of **values** which belong to a **variable** based on **observation**
+  * generally easier to describe functional relationships between variables (e.g., z is a linear combination
+of x and y, density is the ratio of weight to volume) than between rows and comparisons between observations than groups of columns
+2.3  In tidy data:
+  1. Each variable forms a column.
+  2. Each observation forms a row.
+  3. Each type of observational unit forms a table.
+
+## 3. Tidying Messy Datasets
+
+* 5 common problems:
+  • Column headers are values, not variable names.
+  • Multiple variables are stored in one column.
+  • Variables are stored in both rows and columns.
+  • Multiple types of observational units are stored in the same table.
+  
+* tools to tidy: melting, string splitting, casting
+
+3.1. when columns are listed as values, turn into rows
+  * melt and stack dataa
+  1. Melting= parameterised by a list of columns that are already variables, or colvars for short; columns are converted into two variables: a new variable called column that contains repeated column headings and a new variable called value that contains the concatenated data values from the previously separate columns.
+  
+3.3. Variables in both rows and columns
+* most complicated form of messy data
+
+> cast or unstack = reverse function of melting
+
+3.4. Multiple types of observational data stored in same table
+
+> should be stored in separate tables based off of observation
+
+3.5. One type in multiple tables
+
+* this is an easy problem to fix:
+1. Read the files into a list of tables.
+2. For each table, add a new column that records the original file name (because the file
+name is often the value of an important variable).
+3. Combine all tables into a single table.
+
+(plyr package)
+
+```{r}
+library(plyr)
+
+paths <- dir("data", pattern = "\\.csv$", full.names = TRUE)
+names(paths) <- basename(paths)
+ldply(paths, read.csv, stringsAsFactors = FALSE)
+
+```
+
+## 4. Tidy Tools
+
+* Tidy data is only important if it makes data analysis easier
+* Tools can be messy for two reasons: either they take messy datasets as input (messy-input tools) or they produce messy datasets as output (messy-output tools)
+
+4.1. Manipulation:
+
+1. Data manipulation fundamentals: filter, transform, aggregate, sort
+
+* filtering and transforming are performed by the base R functions subset() and transform().These are input and output-tidy. 
+* The aggregate() function performs group-wise aggregation. It is input-tidy. Provided that a single aggregation method is used, it is also output-tidy
+* arrange() and summarise() = sorting
+
+4.2. Visualisation:
+* visual output
+
+4.3. Modelling:
+
+## 5. Case Study
+
+* There's a lot going on here, breaking down arguments and joining/ merging to separate one dataset into 4 tables which each deal with a separate observation
+* 
+
+### Data from R for Reproducible Research
+
+* I'm having trouble working through using these packages for some reason
+
+```{r}
+library(dplyr)
+
+library(plyr)
+
+library("gapminder")
+
+gapminder %>% filter(country=="Australia") %>% head(n=12)
+gapminder %>% dplyr::filter(country=="Australia") %>% head(n=12)
+```
+
+## Class Questions: 
+
+1. tidyverse- mult. packages in tidyverse suite of packages, 

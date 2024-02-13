@@ -79,6 +79,17 @@ colors[3]
 more_colors <- c("blue","green","red","yellow","purple","pink")
 ```
 
-###Challenge (optional):
+##Challenge (optional):
 Why is "four" > "five" TRUE?
   * In string/ char form it is looking at alphabetical order- because four falls below five alphabetically it is considered "greater than"
+  
+  
+## R Packages:
+```{r}
+# Import my data
+library("readr")
+my_data <- read_tsv("http://www.sthda.com/upload/decathlon.txt")
+# View the first 6 rows and tge first 6 columns
+# syntax: my_data[row, column]
+my_data[1:6, 1:6]
+```

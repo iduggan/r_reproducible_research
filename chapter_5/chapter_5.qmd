@@ -1,0 +1,64 @@
+---
+title: "chapter_5"
+format: 
+  html:
+    toc: true
+editor: source
+---
+
+## Exploring Data Frames
+
+1. Adding columns and rows in data frames:
+
+* columns are vectors
+* new vector:
+
+age <- c(2, 3, 5)
+cats
+
+cbind(cats, age)
+
+age <- c(2, 3, 5)
+cats <- cbind(cats, age)
+
+2. Adding rows:
+
+newRow <- list("tortoiseshell", 3.3, TRUE, 9)
+cats <- rbind(cats, newRow)
+
+cats
+>  coat weight likes_string age
+1        calico    2.1            1   2
+2         black    5.0            0   3
+3         tabby    3.2            1   5
+4 tortoiseshell    3.3            1   9
+
+3. Remove row: x
+cats[-4, ]
+> coat weight likes_string age
+1 calico    2.1            1   2
+2  black    5.0            0   3
+3  tabby    3.2            1   5
+
+4. Remove column: y
+cats[,-4]
+> coat weight likes_string
+1        calico    2.1            1
+2         black    5.0            0
+3         tabby    3.2            1
+4 tortoiseshell    3.3            1
+
+cats <- rbind(cats, cats)
+cats
+
+>  coat weight likes_string age
+1        calico    2.1            1   2
+2         black    5.0            0   3
+3         tabby    3.2            1   5
+4 tortoiseshell    3.3            1   9
+5        calico    2.1            1   2
+6         black    5.0            0   3
+7         tabby    3.2            1   5
+8 tortoiseshell    3.3            1   9
+
+
